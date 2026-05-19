@@ -1,35 +1,78 @@
+import java.util.Scanner;
+
 public class Calculadora {
 
+    private double a;
+    private double b;
+
+    public final String result = "\n======= Resultado ========\n";
+
+    public Calculadora(double a, double b) {
+        this.a = a;
+        this.b = b;
+    }
+
+    public Calculadora() {}
+
+    public double getA() {
+        return a;
+    }
+
+    public void setA(double a) {
+        this.a = a;
+    }
+
+    public double getB() {
+        return b;
+    }
+
+    public void setB(double b) {
+        this.b = b;
+    }
+
     public static void main(String[] args) {
-        int a = 10;
-        int b = 2;
-        System.out.println(
-                "\nSoma: " + somar(a, b) +
-                "\nSubtrair: " + subtrair(a, b) +
-                "\nMultiplicar: " + multiplicar(a, b) +
-                "\nDividir: " + dividir(a, b) +
-                "\nDividir por 0: " + dividir(a, 0)
-        );
+        System.out.println("==== Calculadora Simples ====");
+        Scanner sc = new Scanner(System.in);
+        Calculadora calc = new Calculadora();
+        System.out.println("Digite o primerio valor: ");
+        calc.setA(sc.nextDouble());
+        System.out.print("Digite a operação: " +
+                "\n 1 - Somar" +
+                "\n 2 - Subtrair" +
+                "\n 3 - Multiplicar" +
+                "\n 4 - Dividir\n");
+        int op = sc.nextInt();
+        System.out.println("Digite o segundo valor: ");
+        calc.setB(sc.nextDouble());
 
+        System.out.println(calc.result);
+        switch (op) {
+            case 1 -> calc.somar(calc.getA(), calc.getB());
+            case 2 -> calc.subtrair(calc.getA(), calc.getB());
+            case 3 -> calc.multiplicar(calc.getA(), calc.getB());
+            case 4 -> calc.dividir(calc.getA(), calc.getB());
+            default -> System.out.println("Operação inválida!");
+        }
     }
 
-    public static double somar(double a, double b) {
-        return a + b;
+    public void somar(double a, double b) {
+
+        System.out.println(a + b);
     }
 
-    public static double subtrair(double a, double b) {
-        return a - b;
+    public void subtrair(double a, double b) {
+        System.out.println(a - b);
     }
 
-    public static double multiplicar(double a, double b) {
-        return a * b;
+    public void multiplicar(double a, double b) {
+        System.out.println(a * b);
     }
 
-    public static double dividir(double a, double b) {
+    public void dividir(double a, double b) {
         if  (b != 0) {
-            return a / b;
+            System.out.println(a / b);
         } else {
-            return Double.NaN ;
+            System.out.println("Não é possível dividir por zero!");
         }
     }
 }
